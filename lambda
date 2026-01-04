@@ -1,1 +1,35 @@
+import json
+import boto3
+
+s3 = boto3.client("s3")
+
+RAW_BUCKET = "fraud-risk-vibhi"
+RAW_KEY = "transactions/raw/credit_card_transactions.csv"
+
+PROCESSED_BUCKET = "fraud-risk-vibhi"
+PROCESSED_KEY = "transactions/processed/credit_card_transactions_processed.csv"
+
+
+def lambda_handler(event, context):
+    # Read raw data from S3
+    response = s3.get_object(
+        Bucket=RAW_BUCKET,
+        Key=RAW_KEY
+    )
+    raw_data = response["Body"].read().decode("utf-8")
+
+    # Example transformation (placeholder)
+    processed_data = raw_data
+
+    # Write processed data back to S3
+    s3.put_object(
+        Bucket=PROCESSED_BUCKET,
+        Key=PROCESSED_KEY,
+        Body=processed_data
+    )
+
+    return {
+        "statusCode": 200,
+        "body": json.dumps("Fraud ETL completed successfully")
+    }
 
