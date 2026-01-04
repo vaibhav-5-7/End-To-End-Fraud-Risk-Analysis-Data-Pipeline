@@ -1,1 +1,58 @@
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from airflow.operators.dummy import DummyOperator
+from datetime import datetime
+import boto3
+
+
+def trigger_lambda_etl():
+    """
+    Trigger AWS Lambda to process fraud data
+    """
+    lambda_client = boto3.client("lambda")
+    lambda_client.invoke(
+        FunctionName="fraud-risk-etl-lambda",
+        InvocationType="RequestResponse"
+    )
+
+
+def run_athena_validation():
+    """
+    Run Athena validation query on processed data
+    """
+    athena_client = boto3.client("athena")
+    athena_client.start_query_execution(
+        QueryString="SELECT COUNT(*) FROM fraud_processed.transactions;",
+        QueryExecutionContext={
+            "Database": "fraud_db"
+        },
+        ResultConfiguration={
+            "OutputLocation": "s3://fraud-risk-vibhi/athena-results/"
+        }
+    )
+
+
+with DAG(
+    dag_id="fraud_risk_analysis_pipeline",
+    start_date=datetime(2024, 1, 1),
+    schedule_interval="35 9 * * *",
+    catchup=False,
+    tags=["fraud", "airflow", "aws"]
+) as dag:
+
+    start = DummyOperator(task_id="start")
+
+    etl_task = PythonOperator(
+        task_id="trigger_lambda_etl",
+        python_callable=trigger_lambda_etl
+    )
+
+    validation_task = PythonOperator(
+        task_id="run_athena_validation",
+        python_callable=run_athena_validation
+    )
+
+    end = DummyOperator(task_id="end")
+
+    start >> etl_task >> validation_task >> end
 
