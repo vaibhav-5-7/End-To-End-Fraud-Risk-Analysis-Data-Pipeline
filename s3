@@ -6,6 +6,7 @@ s3://fraud-risk-vibhi/
 │   │
 │   └── processed/
 │       └── credit_card_transactions_processed.csv
+            (https://988608580465-rjf3mbs5.us-east-1.console.aws.amazon.com/s3/object/fraud-risk-vibhi?region=us-east-1&prefix=transactions/processed/processed_transactions.csv)
 │
 └── athena-results/
 
