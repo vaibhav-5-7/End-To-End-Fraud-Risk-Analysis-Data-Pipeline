@@ -1,4 +1,4 @@
-s3://fraud-risk-vibhi/
+fraud-risk-vibhi/
 │
 ├── transactions/
 │   ├── raw/
