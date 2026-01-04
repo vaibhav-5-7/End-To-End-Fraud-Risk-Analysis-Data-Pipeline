@@ -1,1 +1,14 @@
+-- Total number of processed transactions
+SELECT COUNT(*) AS total_transactions
+FROM fraud_processed.transactions;
+
+-- Check for missing transaction IDs
+SELECT COUNT(*) AS missing_transaction_ids
+FROM fraud_processed.transactions
+WHERE transaction_id IS NULL;
+
+-- Identify high-value transactions
+SELECT COUNT(*) AS high_value_transactions
+FROM fraud_processed.transactions
+WHERE amount > 100000;
 
