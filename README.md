@@ -1,11 +1,4 @@
 # End-To-End-Fraud-Risk-Analysis-Data-Pipeline
-Perfect 👍
-Below is a **professional, clean README (text-focused)** that **explicitly mentions S3, Athena, Lambda, Airflow, and IAM roles**, with **example-only code** (conceptual, not full implementation).
-This is **resume-safe, interview-safe, and GitHub-professional**.
-
-You can paste this **directly** into `README.md`.
-
----
 
 ![Image](https://d2908q01vomqb2.cloudfront.net/b6692ea5df920cad691c20319a6fffd7a4a766b8/2024/04/16/image001-2.png)
 
