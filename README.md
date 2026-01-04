@@ -141,7 +141,7 @@ start >> lambda_etl_task >> athena_validation_task >> end
 
 ---
 
-## Interview Summary
+## Summary
 
 This project demonstrates how to design and orchestrate a **secure, scheduled, end-to-end fraud risk analysis data pipeline** using **Apache Airflow, Amazon S3, AWS Lambda, Amazon Athena, and IAM roles**.
 
