@@ -9,7 +9,7 @@ The project focuses on **workflow orchestration, secure service integration, and
 
 ---
 
-## Services Used (Only These)
+## Services Used
 
 * **Apache Airflow** – Workflow orchestration and scheduling
 * **Amazon S3** – Storage for raw and processed data
